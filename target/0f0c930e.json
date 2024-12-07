@@ -1,0 +1,27 @@
+{
+  "data": "0f0c930e",
+  "case name": "DEL MONTE FRESH PRODUCE (PHIL.), INC., petitioner, vs. REYNALDO P. BETONIO, respondent. [G.R. No. 223485. December 4, 2019.]",
+  "name of lawyer": "Not applicable.",
+  "nature": "Employer (Company) v. Employee (Senior Manager)",
+  "court": "From the Labor Arbiter (LA) to the National Labor Relations Commission (NLRC) to the Court of Appeals (CA) to the Supreme Court (SC) which ruled on the case with finality.",
+  "date": "August 11, 2010, Complaint filed before the LA. April 25, 2011, LA Decision. December 29, 2011, NLRC Decision. November 20, 2012, NLRC Resolution. February 27, 2013, NLRC Resolution. May 13, 2015, CA Decision. February 16, 2016, CA Resolution. December 4, 2019, SC Decision.",
+  "case type": "Termination of Employment - Illegal Termination (1. Just Causes, 2. Authorized Causes)",
+  "focus of dispute": "Whether or not Betonio was legally dismissed on the ground of loss of trust and confidence, and whether or not his dismissal was made with due process of law.",
+  "legal facts": "DMFPPI is a corporation engaged in providing technical assistance, inspection, and coordination services to Del Monte Fresh International, Inc. (DMFII). Betonio was employed as Senior Manager for Port Operations. Reports and complaints about Betonio's inefficiencies in managing the port led to disciplinary action. Despite the Administrative Committee's recommendation to dismiss the charges, the top management terminated Betonio's employment. Betonio filed a complaint for illegal dismissal, which was initially ruled in his favor by the LA and NLRC, but later reversed by the CA. The SC ultimately upheld the NLRC's initial decision.",
+  "judgement and reason": {
+    "LA": "Ruled in favor of Betonio, holding DMFPPI liable for illegally dismissing him. Ordered DMFPPI to pay Betonio separation pay, full backwages, and attorney's fees.",
+    "NLRC": "Initially reversed the LA's decision, ruling in favor of DMFPPI. Held that Betonio could be dismissed on the ground of loss of trust and confidence. Later reversed itself, reinstating the LA's decision in favor of Betonio.",
+    "CA": "Affirmed the NLRC's November 20, 2012 and February 27, 2013 Resolutions in favor of Betonio. Ruled that Betonio should only be liable for ordinary breach, not for breach of trust and confidence, and that dismissal was too harsh. Found that Betonio's termination was made without due process of law.",
+    "SC": "Reversed the CA's decision, reinstating the NLRC's December 29, 2011 Decision. Held that Betonio was validly dismissed on the ground of loss of trust and confidence, but was not afforded procedural due process. Ordered DMFPPI to pay Betonio nominal damages of P30,000.00 and granted him financial assistance equivalent to one month's salary for every year of service."
+  },
+  "citations": [
+    "Cadavas v. Court of Appeals, G.R. No. 228765, March 20, 2019 citing Vilchez v. Free Port Service Corp., et al., 763 Phil. 32, 39 (2015).",
+    "SM Development Corp. v. Ang, G.R. No. 220434, July 22, 2019.",
+    "Lima Land, Inc., et al. v. Cuevas, 635 Phil. 36 (2010).",
+    "Triumph International (Phils.), Inc. v. Apostol, et al., 607 Phil. 157, 174 (2009).",
+    "Jumuad vs. Hi-Flyer Food, Inc. and/or Montemayor, 672 Phil. 730 (2011).",
+    "Security Bank Savings Corp., et al. v. Singson, 780 Phil. 860, 867 (2016).",
+    "Solid Bank Corp. v. NLRC, et al., 631 Phil. 158 (2010)."
+  ],
+  "evidence": "Show Cause Memo, Affidavits of General Manager, HR Manager, and Senior Director for Banana Production, emails, reports, and complaints from employees and clients, minutes of the Administrative Committee meeting, and the recommendatory report of the Administrative Committee."
+}

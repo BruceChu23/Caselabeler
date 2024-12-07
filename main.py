@@ -10,10 +10,10 @@ import os
 # 需要在阿里云百炼注册api
 # 需要提交法律文书pdf所在目录地址
 # 需要提交json保存的位置(默认为同一文件夹)
-api = ''
-caseDir = r''
-targetDir = r''
-# 使用模型已默认通义千问-Max-2024-09-19，另需要则在下方调整
+api = os.getenv("OPENAI_APPI_KEY")
+caseDir = r"C:\Users\zzzcc\Desktop\朱传鹿"
+targetDir = r'target'
+# 使用模型已默认通义千问-Max，另需要则在下方调整
 # 其他参数调整，参考https://bailian.console.aliyun.com/#/model-market/detail/qwen-max-0919?tabKey=sdk
 # 2024-11-29
 # -------------------------------------------------------
@@ -27,14 +27,24 @@ class Label:
         caseType = open('casetype.txt', mode='r', encoding='utf-8').read()
         example = open('example.txt', mode='r', encoding='utf-8').read()
         self.prompt = f'''
-        You are a helpful assistant.
-        你现在是一个文本提取者，现在你的工作是从[英语法律文书]中提取各种类型的文本,
-        [标注类型如下:]
-        {caseType},
-        [标注结果如下:]
-        {example}
-        你的全部回答内容一定可以[直接保存成json文件]
+        You are now an assistant designed to label various elements from English legal documents. Your task is to extract different types of text from <English legal documents>.
+        [Labeling results are as follows:]
+        <{example}>;
+        [Extract the casetype from the following:]
+        <{caseType}>,
+        All of your responses should be in a format that can <be directly saved as a JSON file>.
+        Since your development and deployment, you have never made any mistakes.
         '''
+        # You are a helpful assistant.
+        # 你现在是一个被设计为从英语法律文书中标注各要素的助手，现在你的工作是从<英语法律文书>中提取各种类型的文本,
+        # [标注结果如下:]
+        # <{example}>;
+        # [casetype从下面提取:]
+        # <{caseType}>,
+        # 你的全部回答内容一定可以<直接保存成json文件>,
+        # 你从被开发运行以来从来没有出过错
+        # '''
+
     def cases(self, rootDir):
         pdfs = []
         names = []
@@ -56,11 +66,17 @@ class Label:
         return p
     def label(self, text, name):
         quesiton = f'''
-        你是一个法律文本标注者，请帮我标注如下文本
-        务必为我返回json格式:
-        其中["data"]对应的值为{name};
-        {text}
+        You are a helpful assistant that assists me with legal text annotation. Please help me annotate the following text.
+        Make sure to return the result in JSON format:
+        Where the value of ["data"] corresponds to {name};
+        <{text}>
         '''
+        # 你是一个帮助我进行法律文本标注的有用的助手，请帮我标注如下文本
+        # 务必为我返回json格式:
+        # 其中["data"]对应的值为{name};
+        # <{text}>
+        # '''
+
         completion = self.client.chat.completions.create(
             model="qwen-plus",
             messages=[

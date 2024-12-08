@@ -10,11 +10,12 @@ import os
 # 需要在阿里云百炼注册api
 # 需要提交法律文书pdf所在目录地址
 # 需要提交json保存的位置(默认为同一文件夹)
-api = os.getenv("OPENAI_APPI_KEY")
+api = os.getenv("OPENAI_API_KEY")
 caseDir = r""
 targetDir = r""
 # 使用模型已默认通义千问-Max，另需要则在下方调整
 # 其他参数调整，参考https://bailian.console.aliyun.com/#/model-market/detail/qwen-max-0919?tabKey=sdk
+# 作者 zcl 202320037@uibe.edu.cn
 # 2024-11-29
 # -------------------------------------------------------
 

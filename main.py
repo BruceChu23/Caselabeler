@@ -19,15 +19,16 @@ targetDir = r""
 # 2024-11-29
 # -------------------------------------------------------
 
+
 class Label:
     def __init__(self):
         self.client = OpenAI(
-            api_key=api, 
+            api_key=api,
             base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
         )
-        caseType = open('casetype.txt', mode='r', encoding='utf-8').read()
-        example = open('example.txt', mode='r', encoding='utf-8').read()
-        self.prompt = f'''
+        caseType = open("casetype.txt", mode="r", encoding="utf-8").read()
+        example = open("example.txt", mode="r", encoding="utf-8").read()
+        self.prompt = f"""
         You are now an assistant designed to label various elements from English legal documents. Your task is to extract different types of text from <English legal documents>.
         [Labeling results are as follows:]
         <{example}>;
@@ -35,7 +36,7 @@ class Label:
         <{caseType}>,
         All of your responses should be in a format that can <be directly saved as a JSON file>.
         Since your development and deployment, you have never made any mistakes.
-        '''
+        """
         # You are a helpful assistant.
         # 你现在是一个被设计为从英语法律文书中标注各要素的助手，现在你的工作是从<英语法律文书>中提取各种类型的文本,
         # [标注结果如下:]
@@ -51,27 +52,29 @@ class Label:
         names = []
         for root, _, files in os.walk(rootDir):
             for file in files:
-                if file.lower().endswith('.pdf'):
+                if file.lower().endswith(".pdf"):
                     f = os.path.join(root, file)
                     pdfs.append(f)
-                    names.append(os.path.join(file).replace('.pdf', ''))
+                    names.append(os.path.join(file).replace(".pdf", ""))
         return pdfs, names
+
     def readCase(self, path):
-        p = ''
+        p = ""
         with pdfplumber.open(path) as pdf:
-            numPages = len(pdf.pages)    
+            numPages = len(pdf.pages)
             for pageNum in range(numPages):
                 page = pdf.pages[pageNum]
                 text = page.extract_text()
                 p = p + text
         return p
+
     def label(self, text, name):
-        quesiton = f'''
+        quesiton = f"""
         You are a helpful assistant that assists me with legal text annotation. Please help me annotate the following text.
         Make sure to return the result in JSON format:
         Where the value of ["data"] corresponds to {name};
         <{text}>
-        '''
+        """
         # 你是一个帮助我进行法律文本标注的有用的助手，请帮我标注如下文本
         # 务必为我返回json格式:
         # 其中["data"]对应的值为{name};
@@ -81,12 +84,14 @@ class Label:
         completion = self.client.chat.completions.create(
             model="qwen-plus",
             messages=[
-                {'role': 'system', 'content': self.prompt},
-                {'role': 'user', 'content': quesiton}],
-            response_format={"type": "json_object"}
-            )
+                {"role": "system", "content": self.prompt},
+                {"role": "user", "content": quesiton},
+            ],
+            response_format={"type": "json_object"},
+        )
         return completion.choices[0].message.content
-    def toJson(self, labelStr, name, targetDir=''):
+
+    def toJson(self, labelStr, name, targetDir=""):
         try:
             parsedJson = json.loads(labelStr)
             tn = rf"{targetDir}\{name}.json" if targetDir else rf"{name}.json"
@@ -106,6 +111,5 @@ if __name__ == "__main__":
         text = label.readCase(case)
         anwser = label.label(text, name)
         label.toJson(anwser, name, targetDir)
-        k += 1
-        print(f'{datetime.datetime.now()}\t已完成第{k}份{name}, 用时{time.time() - t}s')
-        
+        k += 2
+        print(f"{datetime.datetime.now()}\t已完成第{k}份{name}, 用时{time.time() - t}s")

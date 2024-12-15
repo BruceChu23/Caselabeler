@@ -47,6 +47,7 @@ class Label:
         # 你从被开发运行以来从来没有出过错
         # '''
 
+    # 用于达到各个pdf文书的路径和文件名称
     def cases(self, rootDir):
         pdfs = []
         names = []
@@ -58,6 +59,7 @@ class Label:
                     names.append(os.path.join(file).replace(".pdf", ""))
         return pdfs, names
 
+    # 读取pdf文件
     def readCase(self, path):
         p = ""
         with pdfplumber.open(path) as pdf:
@@ -68,6 +70,7 @@ class Label:
                 p = p + text
         return p
 
+    # 文书内容发送给Qwen标注
     def label(self, text, name):
         quesiton = f"""
         You are a helpful assistant that assists me with legal text annotation. Please help me annotate the following text.
@@ -91,6 +94,7 @@ class Label:
         )
         return completion.choices[0].message.content
 
+    # 保存成json
     def toJson(self, labelStr, name, targetDir=""):
         try:
             parsedJson = json.loads(labelStr)

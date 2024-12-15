@@ -111,5 +111,5 @@ if __name__ == "__main__":
         text = label.readCase(case)
         anwser = label.label(text, name)
         label.toJson(anwser, name, targetDir)
-        k += 2
+        k += 1
         print(f"{datetime.datetime.now()}\t已完成第{k}份{name}, 用时{time.time() - t}s")
